@@ -43,7 +43,7 @@ static void clock_render_callback(Canvas* canvas, void* ctx) {
 
     canvas_set_font(canvas, FontBigNumbers);
     locale_format_time(data->buffer, &data->datetime, data->timeformat, true);
-    // Положение времени, ширина, высота
+    // time, x, y
     canvas_draw_str_aligned(
         canvas, 64, 18, AlignCenter, AlignCenter, furi_string_get_cstr(data->buffer));
 
@@ -59,11 +59,12 @@ static void clock_render_callback(Canvas* canvas, void* ctx) {
             AlignCenter,
             (data->datetime.hour > 12) ? "PM" : "AM");
     }
+    // delete date
 
-    canvas_set_font(canvas, FontSecondary);
-    locale_format_date(data->buffer, &data->datetime, data->dateformat, "/");
-    canvas_draw_str_aligned(
-        canvas, 64, 42, AlignCenter, AlignTop, furi_string_get_cstr(data->buffer));
+    //canvas_set_font(canvas, FontSecondary);
+    //locale_format_date(data->buffer, &data->datetime, data->dateformat, "/");
+    // canvas_draw_str_aligned(
+    //     canvas, 64, 42, AlignCenter, AlignTop, furi_string_get_cstr(data->buffer));
 
     furi_mutex_release(clock->mutex);
 }
